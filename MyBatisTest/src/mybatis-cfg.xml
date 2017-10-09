@@ -17,6 +17,6 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="com/wy/entity/userMapper.xml"/>
+        <mapper class="com.wy.entity.UserMapper"/>
     </mappers>
 </configuration>
