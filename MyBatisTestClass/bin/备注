@@ -1,0 +1,15 @@
+<select id="selectUser" resultType="com.wy.entity.User">
+           select * from user where id=#{id}
+       </select>
+       <select id="selectAll" resultType="com.wy.entity.User">
+           select * from user
+       </select>
+       <insert id="addUser" parameterType="com.wy.entity.User">
+           insert into user (userName,userPwd) values (#{userName},#{userPwd})
+       </insert>
+       <update id="updateUser" parameterType="com.wy.entity.User">
+           update user set userName=#{userName},userPwd=#{userPwd} where id=#{id}
+       </update>
+       <delete id="deleteUser" parameterType="int">
+           delete from user where id=#{id}
+       </delete>
