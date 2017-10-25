@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   <mapper namespace="entity.ContactMapper"> 
+       <insert id="add" parameterType="entity.Contact">
+           insert into contact  (sid,name,sex,relation,phone) values (#{student.id},#{name},#{sex},#{relation},#{phone})
+       </insert> 
+       <select id="get" resultMap="information1">
+           select 
+                 s.id sid,s.name sname,s.sex ssex,s.pwd spwd,s.phone sphone,s.grade sgrade,s.photo sphoto,
+                 c.id cid,c.name cname,c.sex csex,c.relation crelation,c.phone cphone
+           from 
+                 student s,
+                 contact c
+           where 
+               c.id=#{id} and c.sid=s.id
+       </select>
+       <resultMap type="entity.Contact" id="information1">
+           <id property="id" column="cid"/>
+               <result property="name" column="cname"/>
+               <result property="sex" column="csex"/>
+               <result property="relation" column="crelation"/>
+               <result property="phone" column="cphone"/>
+       <association property="student" javaType="entity.Student">
+          <id property="id" column="sid"/>
+              <result property="name" column="sname"/>
+              <result property="sex" column="ssex"/>
+              <result property="pwd" column="spwd"/>
+              <result property="phone" column="sphone"/>
+              <result property="grade" column="sgrade"/>
+              <result property="photo" column="sphoto"/>
+       </association>
+       </resultMap>
+   </mapper>
